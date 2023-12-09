@@ -16,6 +16,14 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\Felix\Desktop\Projetos\Projects\TibiaMvc
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/Felix/Desktop/Projetos/Projects/TibiaMvc/Views/Accounts/RegisterAccounts.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudHNcUmVnaXN0ZXJBY2NvdW50cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Felix/Desktop/Projetos/Projects/TibiaMvc/Views/Accounts/ValidateAccounts.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudHNcVmFsaWRhdGVBY2NvdW50cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Felix/Desktop/Projetos/Projects/TibiaMvc/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

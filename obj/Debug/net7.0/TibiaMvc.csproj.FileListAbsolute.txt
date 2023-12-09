@@ -28,3 +28,9 @@ C:\Users\Felix\Desktop\Projetos\Projects\TibiaMvc\obj\Debug\net7.0\refint\TibiaM
 C:\Users\Felix\Desktop\Projetos\Projects\TibiaMvc\obj\Debug\net7.0\TibiaMvc.pdb
 C:\Users\Felix\Desktop\Projetos\Projects\TibiaMvc\obj\Debug\net7.0\TibiaMvc.genruntimeconfig.cache
 C:\Users\Felix\Desktop\Projetos\Projects\TibiaMvc\obj\Debug\net7.0\ref\TibiaMvc.dll
+C:\Users\Felix\Desktop\Projetos\Projects\TibiaMvc\bin\Debug\net7.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\Felix\Desktop\Projetos\Projects\TibiaMvc\bin\Debug\net7.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\Felix\Desktop\Projetos\Projects\TibiaMvc\bin\Debug\net7.0\Newtonsoft.Json.dll
+C:\Users\Felix\Desktop\Projetos\Projects\TibiaMvc\bin\Debug\net7.0\Newtonsoft.Json.Bson.dll
+C:\Users\Felix\Desktop\Projetos\Projects\TibiaMvc\obj\Debug\net7.0\TibiaMvc.csproj.AssemblyReference.cache
+C:\Users\Felix\Desktop\Projetos\Projects\TibiaMvc\obj\Debug\net7.0\TibiaMvc.csproj.CopyComplete
