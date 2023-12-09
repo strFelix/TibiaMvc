@@ -23,6 +23,14 @@ a {
   border-color: #1861ac;
 }
 
+.nav-item{
+  padding: 5px;
+}
+
+.nav-item:hover{
+  text-decoration: underline;
+}
+
 .border-top {
   border-top: 1px solid #e5e5e5;
 }
