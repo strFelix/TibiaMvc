@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v7.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v7.0": {
+      "TibiaMvc/1.0.0": {
+        "runtime": {
+          "TibiaMvc.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "TibiaMvc/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
