@@ -25,3 +25,124 @@
         <dd>@Html.DisplayFor(model => model.AcessDate)</dd>
     </dl>
 </div>
+<button onclick="ChangeEmail();" type="button" class="btn btn-primary">Change email</button>
+    <!--Conteúdo do modal popup-->
+    <div class="modal fade bd-example-modal-lg" id="InternModal" tabindex="-1" role="dialog"
+        aria-labelledby="InternModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="InternModalLabel">Changing email</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    @using (Html.BeginForm("UpdateEmail", "Accounts", FormMethod.Post))
+                    {
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Id, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-6">
+                                    @Html.EditorFor(model => model.Id, new
+                                        {
+                                            htmlAttributes = new
+                                            {
+                                                @class = "form-control",
+                                                @readonly = "readonly"
+                                            }
+                                        })
+                                </div>
+                            </div><br />
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Email, htmlAttributes: new
+                                    {
+                                        @class = "control-label col-md-2"
+                                    })
+                                <div class="col-md-6">
+                                    @Html.EditorFor(model => model.Email, new
+                                        {
+                                            htmlAttributes = new
+                                            {
+                                                @class =
+                                             "form-control"
+                                            }
+                                        })
+                                </div>
+                            </div><br />
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-6">
+                                    <input type="submit" value="Submit" class="btn btn-primary" />
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+<button onclick="ChangePassword();" type="button" class="btn btn-primary">Change password</button>
+    <!--Conteúdo do modal popup-->
+    <div class="modal fade bd-example-modal-lg" id="ExternModal" tabindex="-1" role="dialog"
+        aria-labelledby="ExternModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ExternModalLabel">Changing password</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    @using (Html.BeginForm("UpdatePassword", "Accounts", FormMethod.Post))
+                    {
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-6">
+                                    @Html.EditorFor(model => model.Username, new
+                                        {
+                                            htmlAttributes = new
+                                            {
+                                                @class = "form-control",
+                                                @readonly = "readonly"
+                                            }
+                                        })
+                                </div>
+                            </div><br />
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.PasswordString, htmlAttributes: new
+                                    {
+                                        @class = "control-label col-md-2"
+                                    })
+                                <div class="col-md-6">
+                                    @Html.EditorFor(model => model.PasswordString, new
+                                        {
+                                            htmlAttributes = new
+                                            {
+                                                @class =
+                                             "form-control"
+                                            }
+                                        })
+                                </div>
+                            </div><br />
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-6">
+                                    <input type="submit" value="Submit" class="btn btn-primary" />
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function ChangeEmail() {
+            $("#InternModal").modal("show");
+        }
+    </script>
+    
+    <script type="text/javascript">
+        function ChangePassword() {
+            $("#ExternModal").modal("show");
+        }
+    </script>

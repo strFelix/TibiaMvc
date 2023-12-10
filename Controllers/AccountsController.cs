@@ -119,6 +119,64 @@ public class AccountsController : Controller
         }
     }
 
+    public async Task<ActionResult> UpdateEmail(AccountViewModel a)
+    {
+        try
+        {
+            HttpClient httpClient = new HttpClient();
+            string uriComplementary = "UpdateEmail";
+            var content = new StringContent(JsonConvert.SerializeObject(a));
+            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+            HttpResponseMessage response = await httpClient.PutAsync(uriBase + uriComplementary, content);
+            string serialized = await response.Content.ReadAsStringAsync();
+
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                TempData["Message"] = "Email changed successfully";
+            }
+            else
+                throw new System.Exception(serialized);
+        }
+        catch (System.Exception ex)
+        {
+            TempData["MessageError"] = ex.Message;
+        }
+        return RedirectToAction("Manage");
+    }
+
+    [HttpPost]
+    public async Task<ActionResult> UpdatePassword(AccountViewModel a)
+    {
+        try
+        {
+            HttpClient httpClient = new HttpClient();
+            string token = HttpContext.Session.GetString("SessionTokenAccount");
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            string uriComplementar = "UpdatePassword";
+            string username = HttpContext.Session.GetString("SessionUsernameAccount");
+            a.Username = username;
+            var content = new StringContent(JsonConvert.SerializeObject(a));
+            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            HttpResponseMessage response = await httpClient.PutAsync(uriBase + uriComplementar, content);
+
+            string serialized = await response.Content.ReadAsStringAsync();
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                TempData["Message"] = "Password changed successfully";
+                return RedirectToAction("Manage");
+            }
+            else
+                throw new System.Exception(serialized);
+        }
+        catch (System.Exception ex)
+        {
+            TempData["MessageError"] = ex.Message;
+        }
+        return RedirectToAction("Manage");
+    }
+
     [HttpGet]
     public ActionResult Exit()
     {
@@ -137,3 +195,4 @@ public class AccountsController : Controller
         }
     }
 }
+
