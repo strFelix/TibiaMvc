@@ -15,6 +15,6 @@ namespace TibiaMvc.Models
         public VocationEnum Vocation { get; set; }
         public DateTime CreationDate { get; set; }
         public DateTime AcessDate { get; set; }
-        public SkillViewModel Skills { get; set; }
+        public SkillViewModel? Skills { get; set; }
     }
 }

@@ -50,7 +50,7 @@ public class CharactersController : Controller
         }
         catch (System.Exception ex)
         {
-            TempData["MensagemErro"] = ex.Message;
+            TempData["MessageError"] = ex.Message;
             return RedirectToAction("Index");
         }
     }
@@ -68,15 +68,15 @@ public class CharactersController : Controller
             int id = int.Parse(HttpContext.Session.GetString("SessionIdAccount"));
             content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             HttpResponseMessage response = await httpClient.PostAsync(uriBase + uriComplementary, content);
-            
-            if(c.AccountId != id)
+
+            if (c.AccountId != id)
                 throw new Exception("Invalid Account");
 
             string serialized = await response.Content.ReadAsStringAsync();
 
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                TempData["Mensagem"] = string.Format("Character {0} has been created successfully!", c.Name);
+                TempData["Message"] = string.Format("Character {0} has been created!", c.Name);
                 return RedirectToAction("Index", "Characters");
             }
             else
@@ -84,7 +84,7 @@ public class CharactersController : Controller
         }
         catch (System.Exception ex)
         {
-            TempData["MensagemErro"] = ex.Message;
+            TempData["MessageError"] = ex.Message;
             return RedirectToAction("Create");
         }
     }

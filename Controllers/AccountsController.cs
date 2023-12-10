@@ -36,7 +36,7 @@ public class AccountsController : Controller
 
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                TempData["Mensagem"] =
+                TempData["Message"] =
                     string.Format("Account {0} successfully registered! Log in to access.", a.Username);
                 return View("ValidateAccounts");
             }
@@ -48,7 +48,7 @@ public class AccountsController : Controller
         }
         catch (SystemException ex)
         {
-            TempData["MensagemErro"] = ex.Message;
+            TempData["MessageError"] = ex.Message;
             return RedirectToAction("Index");
         }
     }
@@ -74,8 +74,8 @@ public class AccountsController : Controller
                 HttpContext.Session.SetString("SessionTokenAccount", aLogin.Token);
                 HttpContext.Session.SetString("SessionIdAccount", aLogin.Id.ToString());
                 HttpContext.Session.SetString("SessionUsernameAccount", aLogin.Username);
-                
-                TempData["Mensagem"] = string.Format("Welcome {0} your id is {1}!", aLogin.Username, aLogin.Id);
+
+                TempData["Message"] = string.Format("Welcome {0} your id is {1}!", aLogin.Username, aLogin.Id);
                 return RedirectToAction("Index", "Characters");
             }
             else
@@ -85,7 +85,7 @@ public class AccountsController : Controller
         }
         catch (System.Exception ex)
         {
-            TempData["MensagemErro"] = ex.Message;
+            TempData["MessageError"] = ex.Message;
             return RedirectToAction("Login", "Accounts");
         }
     }
@@ -93,16 +93,17 @@ public class AccountsController : Controller
     [HttpGet]
     public ActionResult Exit()
     {
-        try{
+        try
+        {
             HttpContext.Session.Remove("SessionTokenAccount");
             HttpContext.Session.Remove("SessionIdAccount");
             HttpContext.Session.Remove("SessionUsernameAccount");
 
             return RedirectToAction("Index", "Home");
         }
-       catch (System.Exception ex)
+        catch (System.Exception ex)
         {
-            TempData["MensagemErro"] = ex.Message;
+            TempData["MessageError"] = ex.Message;
             return RedirectToAction("AccountInfo");
         }
     }

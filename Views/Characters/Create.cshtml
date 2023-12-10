@@ -5,16 +5,16 @@
 
 
 <h2>Create new character</h2>
-@if (@TempData["Mensagem"] != null)
+@if (@TempData["Message"] != null)
 {
     <div class="alert alert-success" role="alert">
-        @TempData["Mensagem"]</div>
+        @TempData["Message"]</div>
 }
 <!--Configuração para exibir mensagem de erro -->
-@if (@TempData["MensagemErro"] != null)
+@if (@TempData["MessageError"] != null)
 {
     <div class="alert alert-danger" role="alert">
-        @TempData["MensagemErro"]</div>
+        @TempData["MessageError"]</div>
 }
 @using (Html.BeginForm())
 {

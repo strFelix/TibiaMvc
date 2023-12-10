@@ -19,6 +19,6 @@ namespace TibiaMvc.Models
         public int DistanceFigthing { get; set; }
         public int Shielding { get; set; }
         public int Fishing { get; set; }
-        public CharacterViewModel Character { get; set; }
+        public CharacterViewModel? Character { get; set; }
     }
 }
