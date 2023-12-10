@@ -29,6 +29,7 @@
     <th>@Html.DisplayNameFor(model => model.Gender)</th>
     <th>@Html.DisplayNameFor(model => model.Vocation)</th>
     <th>@Html.DisplayNameFor(model => model.CreationDate)</th>
+    <th></th>
   </tr>
   <!--Looping para escrever os dados na tabela-->
    @foreach (var model in Model){
@@ -38,6 +39,12 @@
       <td>@Html.DisplayFor(modelItem => model.Gender)</td>
       <td>@Html.DisplayFor(modelItem => model.Vocation)</td>
       <td>@Html.DisplayFor(modelItem => model.CreationDate)</td>
+      <td>
+        @Html.ActionLink("Details", "Details", new { id = model.Id }) |
+        @Html.ActionLink("Delete", "Delete", new { id = model.Id })
+      </td>
     </tr>
    }
 </table>
+
+

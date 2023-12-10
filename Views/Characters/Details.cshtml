@@ -1,0 +1,41 @@
+﻿@model TibiaMvc.Models.SkillViewModel
+@{
+    ViewBag.Title = "Character details";
+}
+@if (@TempData["Message"] != null)
+{
+    <div class="alert alert-success" role="alert">@TempData["Message"]</div>
+}
+<!--Configuração para exibir mensagem de erro -->
+@if (@TempData["MessageError"] != null)
+{
+    <div class="alert alert-danger" role="alert">@TempData["MessageError"]</div>
+}
+<h2>Character details</h2>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(model => model.CharacterId)</dt>
+        <dd>@Html.DisplayFor(model => model.CharacterId)</dd>
+        <dt>@Html.DisplayNameFor(model => model.Level)</dt>
+        <dd>@Html.DisplayFor(model => model.Level)</dd>
+        <dt>@Html.DisplayNameFor(model => model.MagicLevel)</dt>
+        <dd>@Html.DisplayFor(model => model.MagicLevel)</dd>
+        <dt>@Html.DisplayNameFor(model => model.FistFigthing)</dt>
+        <dd>@Html.DisplayFor(model => model.FistFigthing)</dd>
+        <dt>@Html.DisplayNameFor(model => model.ClubFigthing)</dt>
+        <dd>@Html.DisplayFor(model => model.ClubFigthing)</dd>
+        <dt>@Html.DisplayNameFor(model => model.SwordFigthing)</dt>
+        <dd>@Html.DisplayFor(model => model.SwordFigthing)</dd>
+        <dt>@Html.DisplayNameFor(model => model.AxeFigthing)</dt>
+        <dd>@Html.DisplayFor(model => model.AxeFigthing)</dd>
+        <dt>@Html.DisplayNameFor(model => model.DistanceFigthing)</dt>
+        <dd>@Html.DisplayFor(model => model.DistanceFigthing)</dd>
+        <dt>@Html.DisplayNameFor(model => model.Shielding)</dt>
+        <dd>@Html.DisplayFor(model => model.Shielding)</dd>
+        <dt>@Html.DisplayNameFor(model => model.Fishing)</dt>
+        <dd>@Html.DisplayFor(model => model.Fishing)</dd>
+    </dl>
+</div>
+
+@Html.ActionLink("Return", "Index")

@@ -88,4 +88,60 @@ public class CharactersController : Controller
             return RedirectToAction("Create");
         }
     }
+
+    [HttpGet]
+    public async Task<ActionResult> DetailsAsync(int? id)
+    {
+        try
+        {
+            HttpClient httpClient = new HttpClient();
+            string token = HttpContext.Session.GetString("SessionTokenUsuario");
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+             string uriComplementary = "skill/";
+            HttpResponseMessage response = await httpClient.GetAsync(uriBase + uriComplementary + id.ToString());
+            string serialized = await response.Content.ReadAsStringAsync();
+
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                SkillViewModel s = await Task.Run(() =>
+                    JsonConvert.DeserializeObject<SkillViewModel>(serialized));
+                return View(s);
+            }
+            else
+                throw new System.Exception(serialized);
+        }
+        catch (System.Exception ex)
+        {
+            TempData["MessageError"] = ex.Message;
+            return RedirectToAction("Index");
+        }
+    }
+
+    [HttpGet]
+        public async Task<ActionResult> DeleteAsync(int id)
+        {
+            try
+            {
+                HttpClient httpClient = new HttpClient();
+                string token = HttpContext.Session.GetString("SessionTokenUsuario");
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                HttpResponseMessage response = await httpClient.DeleteAsync(uriBase + id.ToString());
+                string serialized = await response.Content.ReadAsStringAsync();
+
+                if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    TempData["Message"] =
+                        string.Format("Character {0} has been deleted!", id);
+                    return RedirectToAction("Index");
+                }
+                else
+                    throw new System.Exception(serialized);
+            }
+            catch (System.Exception ex)
+            {
+                TempData["MessageError"] = ex.Message;
+                return RedirectToAction("Index");
+            }
+        }
 }
