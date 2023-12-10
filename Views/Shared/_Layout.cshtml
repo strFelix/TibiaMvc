@@ -11,30 +11,45 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid" style="padding: 0px 20px 0px 20px;">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
-                    <img src="https://www.tibiawiki.com.br/images/5/52/Tibia_Logo.png" height="40px">
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Characters" asp-action="Index">Characters</a>
-                        </li>
-                    </ul>
+        @{
+            var sessionName = new Byte[20];
+            bool nameStatus = Context.Session.TryGetValue("SessionIdAccount", out sessionName);
+            string session = string.Empty;
 
-                    
-                    <partial name="_LoginPartial"/>
+            if(nameStatus)
+                session = System.Text.Encoding.UTF8.GetString(sessionName);
+
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+                <div class="container-fluid" style="padding: 0px 20px 0px 20px;">
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                        <img src="https://www.tibiawiki.com.br/images/5/52/Tibia_Logo.png" height="40px">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                        <ul class="navbar-nav flex-grow-1">
+                            @if (!string.IsNullOrEmpty(session)){
+                                <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Characters" asp-action="Index">Characters</a>
+                            </li>
+                            }
+                        </ul>
+
+                        @if (string.IsNullOrEmpty(session)){
+                            <partial name="_LoginPartial"/>
+                        }
+                        else{
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Accounts" asp-action="Exit">Exit</a>
+                        }
+                    </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
+        }
     </header>
     <br>
     <div class="container">

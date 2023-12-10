@@ -24,6 +24,9 @@ public class CharactersController : Controller
     {
         try
         {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("SessionIdAccount")))
+                return RedirectToAction("Exit", "Accounts");
+
             string uriComplementary = "";
             HttpClient httpClient = new HttpClient();
             string token = HttpContext.Session.GetString("SessionTokenAccount");
@@ -50,12 +53,6 @@ public class CharactersController : Controller
             TempData["MensagemErro"] = ex.Message;
             return RedirectToAction("Index");
         }
-    }
-
-    public async Task<int> SessionId()
-    {
-        int id = int.Parse(HttpContext.Session.GetString("SessionIdAccount"));
-        return id;
     }
 
     [HttpPost]

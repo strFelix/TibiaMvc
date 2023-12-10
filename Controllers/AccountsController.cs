@@ -75,7 +75,7 @@ public class AccountsController : Controller
                 HttpContext.Session.SetString("SessionIdAccount", aLogin.Id.ToString());
                 HttpContext.Session.SetString("SessionUsernameAccount", aLogin.Username);
                 
-                TempData["Mensagem"] = string.Format("Welcome {0}!", aLogin.Username);
+                TempData["Mensagem"] = string.Format("Welcome {0} your id is {1}!", aLogin.Username, aLogin.Id);
                 return RedirectToAction("Index", "Characters");
             }
             else
@@ -87,6 +87,23 @@ public class AccountsController : Controller
         {
             TempData["MensagemErro"] = ex.Message;
             return RedirectToAction("Login", "Accounts");
+        }
+    }
+
+    [HttpGet]
+    public ActionResult Exit()
+    {
+        try{
+            HttpContext.Session.Remove("SessionTokenAccount");
+            HttpContext.Session.Remove("SessionIdAccount");
+            HttpContext.Session.Remove("SessionUsernameAccount");
+
+            return RedirectToAction("Index", "Home");
+        }
+       catch (System.Exception ex)
+        {
+            TempData["MensagemErro"] = ex.Message;
+            return RedirectToAction("AccountInfo");
         }
     }
 }
