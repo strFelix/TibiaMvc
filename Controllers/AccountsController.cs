@@ -53,6 +53,35 @@ public class AccountsController : Controller
         }
     }
 
+    [HttpGet]
+    public async Task<ActionResult> ManageAsync()
+    {
+        try
+        {
+            HttpClient httpClient = new HttpClient();
+
+            int login = int.Parse(HttpContext.Session.GetString("SessionIdAccount"));
+            string uriComplementary = $"{login}";
+            HttpResponseMessage response = await httpClient.GetAsync(uriBase + uriComplementary);
+            string serialized = await response.Content.ReadAsStringAsync();
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                AccountViewModel a = await Task.Run(() =>
+                    JsonConvert.DeserializeObject<AccountViewModel>(serialized));
+                return View(a);
+            }
+            else
+            {
+                throw new System.Exception(serialized);
+            }
+        }
+        catch (System.Exception ex)
+        {
+            TempData["MensagemErro"] = ex.Message;
+            return RedirectToAction("Index");
+        }
+    }
+
     [HttpPost]
     public async Task<ActionResult> ValidateAsync(AccountViewModel a)
     {
