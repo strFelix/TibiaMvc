@@ -1,13 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using TibiaMvc.Models;
-using System.Net.Http;
 using Newtonsoft.Json;
-using Microsoft.AspNetCore.Http;
 using System.Net.Http.Headers;
-using System.Threading.Tasks;
-using System.Net.Http;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Http;
 
 namespace TibiaMvc.Controllers;
 
@@ -65,11 +59,11 @@ public class AccountsController : Controller
         try
         {
             HttpClient httpClient = new HttpClient();
-            string uriComplementar = "Validate";
+            string uriComplementary = "Validate";
 
             var content = new StringContent(JsonConvert.SerializeObject(a));
             content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            HttpResponseMessage response = await httpClient.PostAsync(uriBase + uriComplementar, content);
+            HttpResponseMessage response = await httpClient.PostAsync(uriBase + uriComplementary, content);
 
             string serialized = await response.Content.ReadAsStringAsync();
 
@@ -78,10 +72,11 @@ public class AccountsController : Controller
                 AccountViewModel aLogin = JsonConvert.DeserializeObject<AccountViewModel>(serialized);
 
                 HttpContext.Session.SetString("SessionTokenAccount", aLogin.Token);
-                HttpContext.Session.SetString("SessionUsername", aLogin.Username);
+                HttpContext.Session.SetString("SessionIdAccount", aLogin.Id.ToString());
+                HttpContext.Session.SetString("SessionUsernameAccount", aLogin.Username);
                 
                 TempData["Mensagem"] = string.Format("Welcome {0}!", aLogin.Username);
-                return RedirectToAction("Login", "Accounts");
+                return RedirectToAction("Index", "Characters");
             }
             else
             {
