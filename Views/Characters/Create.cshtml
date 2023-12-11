@@ -2,9 +2,6 @@
 @{
     ViewBag.Title = "Create Character";
 }
-
-
-<h2>Create new character</h2>
 @if (@TempData["Message"] != null)
 {
     <div class="alert alert-success" role="alert">
@@ -16,46 +13,45 @@
     <div class="alert alert-danger" role="alert">
         @TempData["MessageError"]</div>
 }
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    <div class="form-horizontal">
-        <hr />
-        <div class="form-group">
-            <label class="control-label col-md-2">Name:</label>
-            <div class="col-md-6">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+<div class="container" style="border: 1px solid #ccc; border-radius: 10px; padding: 20px; max-width: 50%; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);">
+<h2>Create new character</h2>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-horizontal">
+            <hr />
+            <div class="form-group">
+                <label class="control-label col-md-2">Name:</label>
+                <div class="col-md-6" style="width: 100%; padding: 10px 0px 10px 0px">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
             </div>
-        </div>
 
-         <div class="form-group">
-            <label class="control-label col-md-2">Account id:</label>
-            <div class="col-md-6">
-                @Html.EditorFor(model => model.AccountId, new { htmlAttributes = new { @class = "form-control",} })
+            <div class="form-group">
+                <label class="control-label col-md-2">Account id:</label>
+                <div class="col-md-6" style="width: 100%; padding: 10px 0px 10px 0px">
+                    @Html.EditorFor(model => model.AccountId, new { htmlAttributes = new { @class = "form-control",} })
+                </div>
             </div>
-        </div>
-        
-        <div class="form-group"></div>
-            <label class="control-label col-md-2">Gender:</label>
-            <div class="col-md-6">
-                @Html.DropDownListFor(model => model.Gender, Html.GetEnumSelectList(typeof(TibiaMvc.Models.Enums.GenderEnum)),"---Select---", new { @class = "form-control" })
+            
+            <div class="form-group"></div>
+                <label class="control-label col-md-2">Gender:</label>
+                <div class="col-md-6" style="width: 100%; padding: 10px 0px 10px 0px">
+                    @Html.DropDownListFor(model => model.Gender, Html.GetEnumSelectList(typeof(TibiaMvc.Models.Enums.GenderEnum)),"---Select---", new { @class = "form-control" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <label class="control-label col-md-2">Vocation:</label>
-            <div class="col-md-6">
-                @Html.DropDownListFor(model => model.Vocation, Html.GetEnumSelectList(typeof(TibiaMvc.Models.Enums.VocationEnum)),"---Select---", new { @class = "form-control" })
+            <div class="form-group">
+                <label class="control-label col-md-2">Vocation:</label>
+                <div class="col-md-6" style="width: 100%; padding: 10px 0px 10px 0px">
+                    @Html.DropDownListFor(model => model.Vocation, Html.GetEnumSelectList(typeof(TibiaMvc.Models.Enums.VocationEnum)),"---Select---", new { @class = "form-control" })
+                </div>
             </div>
-        </div>
 
+        <br>
+        <input type="submit" value="Create" class="btn btn-primary" style="font-weight: bold; width: 84%;" />
+        <!--Exemplo de Link (Texto, View, Controller) -->
+        @Html.ActionLink("Return", "Index", "Characters", null, new { @class = "btn btn-warning", @style = "color: white;"})
+    }
     <br>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-6">
-            <input type="submit" value="Create" class="btn btn-primary" />
-        </div>
-    </div>
-}
-<div>
-    @Html.ActionLink("Return", "Index")
 </div>
